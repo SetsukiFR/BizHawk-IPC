@@ -308,10 +308,7 @@ namespace BizHawk.Client.EmuHawk
 
 		private static bool ShouldSwallow(AllowInput allowInput, HostInputType inputFocus)
 		{
-			if (inputFocus == HostInputType.IPC)
-				return false;
-
-			return allowInput == AllowInput.None || (allowInput == AllowInput.OnlyController && inputFocus != HostInputType.Pad);
+			return (allowInput is AllowInput.None && inputFocus is not HostInputType.IPC) || (allowInput == AllowInput.OnlyController && inputFocus != HostInputType.Pad);
 		}
 
 		public void StartListeningForAxisEvents()
